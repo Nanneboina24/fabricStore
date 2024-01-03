@@ -166,7 +166,7 @@ const Cart = ({ setcartLength }) => {
   return (
     <CustomBox>
       {
-        rows.length == 0 ?
+        rows.length === 0 ?
           (
             <CustomBoxCenter>
               <Empty msg={"Cart Empty"} src={Digital.Content_Empty} />

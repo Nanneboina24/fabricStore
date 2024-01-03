@@ -81,7 +81,7 @@ const Content = ({ setcartLength }) => {
   return (
     <CustomBox>
       {
-        contentData.length == 0 ?
+        contentData.length === 0 ?
           (
             <CustomBoxCenter>
               <Empty msg={"Data Empty"} src={Digital.Content_Empty} />

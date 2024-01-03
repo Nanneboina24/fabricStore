@@ -1,8 +1,7 @@
-import { AccountCircle, LogoutOutlined, Notifications, ShoppingCart } from '@mui/icons-material'
-import { AppBar, Avatar, Badge, Box, IconButton, Menu, MenuItem, Toolbar, Typography, styled } from '@mui/material'
+import { AccountCircle, LogoutOutlined, ShoppingCart } from '@mui/icons-material'
+import { AppBar, Avatar, Box, Divider, IconButton, Menu, MenuItem, Toolbar, Typography, styled } from '@mui/material'
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { getCartLength } from '../../Data/MockData';
 
 // Styled Components
 const CustomBadge = styled(Box)({
@@ -24,6 +23,7 @@ const CustomBadge = styled(Box)({
 const Navbar = ({ cartLength }) => {
   //*states
   const [anchorEl, setAnchorEl] = useState(null);
+  const [user, setuser] = useState({});
   const navigate = useNavigate();
 
   const handleMenuClick = (event) => {
@@ -39,6 +39,22 @@ const Navbar = ({ cartLength }) => {
     localStorage.removeItem("user");
     navigate("/")
   }
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+
+        //*storage
+        const user = JSON.parse(localStorage?.getItem("user"));
+        setuser(user);
+      } catch (error) {
+        console.error('Error fetching content data:', error);
+      }
+    };
+
+    fetchUserData();
+  }, []); // initial only it renders
+
 
   return (
     <AppBar position="static" >
@@ -92,6 +108,17 @@ const Navbar = ({ cartLength }) => {
             open={Boolean(anchorEl)}
             onClose={handleMenuClose}
           >
+            <MenuItem>
+              <Avatar alt="logo" src={user.logo}
+                sx={{ width: 25, height: 25, mr: 1 }} />
+              <Typography
+                variant="subtitle2"
+              >
+                {user.username}
+              </Typography>
+
+            </MenuItem>
+            <Divider></Divider>
             <MenuItem onClick={handleLogout}><LogoutOutlined />Logout</MenuItem>
           </Menu>
         </Box>
