@@ -24,22 +24,7 @@ const CustomBadge = styled(Box)({
 const Navbar = ({ cartLength }) => {
   //*states
   const [anchorEl, setAnchorEl] = useState(null);
-  // const [cartLength, setcartLength] = useState(0);
   const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   const fetchCartData = async () => {
-  //     try {
-  //       const user = JSON.parse(localStorage?.getItem("user"));
-  //       let data = await getCartLength(user.id);
-  //       setcartLength(data);
-  //     } catch (error) {
-  //       console.error('Error fetching content data:', error);
-  //     }
-  //   };
-
-  //   fetchCartData();
-  // }, [cartLength]);
 
   const handleMenuClick = (event) => {
     setAnchorEl(event.currentTarget);

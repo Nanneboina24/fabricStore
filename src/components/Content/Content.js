@@ -55,9 +55,8 @@ const Content = ({ setcartLength }) => {
   useEffect(() => {
     const fetchContentData = async () => {
       try {
-        console.log("rows");
         const data = await getContent(queryParamsObject);
-        console.log(data);
+        console.log("content", data);
         setcontentData(data);
       } catch (error) {
         console.error('Error fetching content data:', error);
@@ -67,14 +66,13 @@ const Content = ({ setcartLength }) => {
     fetchContentData();
   }, [queryParamsObject]); // runs when ever change happend in queryParamsObject
 
-  console.log(contentData);
 
   const handleAddCart = async (item) => {
     item = {
       ...item,
       quantity: item.quantity ? item.quantity : 1
     }
-    console.log("content", item, user.id);
+    console.log("cart add", item, user.id);
 
     await postCart(user.id, item);
     setcartLength((prev) => prev + 1)

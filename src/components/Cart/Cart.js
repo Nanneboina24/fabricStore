@@ -104,7 +104,7 @@ const Cart = ({ setcartLength }) => {
           ...item,
           sno: index + 1,
         }));
-        console.log(data)
+        console.log("cart rows",data)
         setrows(data);
       } catch (error) {
         console.error('Error fetching content data:', error);
@@ -137,7 +137,7 @@ const Cart = ({ setcartLength }) => {
         ...item,
         sno: index + 1,
       }));
-      console.log(data)
+      console.log("cart update",data)
       setrows(data);
     }
 
@@ -152,13 +152,13 @@ const Cart = ({ setcartLength }) => {
       ...item,
       sno: index + 1,
     }));
-    console.log("del", data);
+    console.log("cart delete", data);
     setrows(data);
 
   }
 
   const handleCartDelAll = async () => {
-    let data = await delCartAll();
+    let data = await delCartAll(user.id);
     setcartLength(0);
     setrows(data);
   }
